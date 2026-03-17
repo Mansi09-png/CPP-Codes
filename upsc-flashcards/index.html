@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPSC Active Recall</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>UPSC Prelims Active Recall</h1>
+      <p class="subtitle">Choose your subject and revise one question at a time.</p>
+
+      <section class="panel" id="source-panel">
+        <h2>1) Load Questions</h2>
+        <p class="help">Questions are loaded from your shared Google Sheet by default.</p>
+        <button id="loadSheetBtn" class="neutral">Load Questions from Google Sheet</button>
+        <div id="sheetStatus" class="status">Not loaded yet.</div>
+
+        <details>
+          <summary>Need fallback? Upload Excel manually</summary>
+          <p class="help">Expected columns: <code>subject</code> and <code>question</code>.</p>
+          <input type="file" id="excelFile" accept=".xlsx,.xls" />
+          <div id="fileStatus" class="status">No file selected.</div>
+        </details>
+      </section>
+
+      <section class="panel" id="subject-panel">
+        <h2>2) Choose Subject</h2>
+        <select id="subjectSelect" disabled>
+          <option value="">Select a subject</option>
+        </select>
+      </section>
+
+      <section class="panel" id="flashcard-panel" hidden>
+        <h2>3) Flashcards</h2>
+        <div class="progress" id="progressText"></div>
+        <article class="flashcard">
+          <p id="questionText">Question appears here.</p>
+        </article>
+
+        <div class="controls">
+          <button id="ohNoBtn" class="danger">Oh No</button>
+          <button id="ohYesBtn" class="success">Oh Yes</button>
+          <button id="nextBtn" class="neutral">Next</button>
+        </div>
+
+        <div class="summary">
+          <h3>Session Summary</h3>
+          <p id="summaryText">No responses yet.</p>
+          <p id="backlogText" class="help">Backlog: 0 question(s) marked "Oh No".</p>
+          <button id="retryNoBtn" class="retry" disabled>Practice Backlog (Oh No)</button>
+          <button id="downloadBtn" class="neutral" disabled>Download Responses (CSV)</button>
+          <button id="clearBacklogBtn" class="danger" disabled>Clear Backlog</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
